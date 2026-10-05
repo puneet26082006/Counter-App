@@ -36,6 +36,8 @@ The count is stored in the page only. Refreshing the page resets both the count 
 | [style.css](Counter%20app%20project/style.css) | Page layout and visual styling |
 | [script.js](Counter%20app%20project/script.js) | Click handlers and count updates |
 
-## Current input behavior
+## Step input
 
-The script reads the step with `parseInt`. An empty or zero value falls back to `1`, and decimal values are truncated. The input advertises a minimum of `1`, but the click handlers do not enforce it; use positive whole numbers for the intended behavior.
+Use a positive whole number for the step. Clicking **+** or **-** with an empty, zero, negative, fractional, or excessively large step resets the input to `1` and applies a one-unit change. Valid numeric input is read as a number, so `1e2` means a step of `100`.
+
+The count can still become negative. **Reset** returns it to zero without changing the selected step.
