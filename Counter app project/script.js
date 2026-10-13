@@ -13,19 +13,22 @@ const getChangeValue = () => {
     return value;
 };
 
-minus.addEventListener("click",function(){
-    const countvalue = Number(count.innerText);
-    const changevalue = getChangeValue();
-    count.innerText = countvalue - changevalue ;
+const statusMessage = document.getElementById("counter-status");
 
-})
+const changeCount = (direction) => {
+    const nextCount = Number(count.innerText) + direction * getChangeValue();
+    if (!Number.isSafeInteger(nextCount)) {
+        statusMessage.innerText = "This change exceeds the exact integer range. Use a smaller step or reset.";
+        return;
+    }
+    count.innerText = nextCount;
+    statusMessage.innerText = "";
+};
 
-plus.addEventListener("click",function(){
-    const countvalue = Number(count.innerText);
-    const changevalue = getChangeValue();
-    count.innerText = countvalue + changevalue ;
-})
+minus.addEventListener("click", () => changeCount(-1));
+plus.addEventListener("click", () => changeCount(1));
 
-reset.addEventListener("click",function(){
-    count.innerText = 0 ;
-})
+reset.addEventListener("click", () => {
+    count.innerText = 0;
+    statusMessage.innerText = "";
+});

@@ -41,3 +41,6 @@ The count is stored in the page only. Refreshing the page resets both the count 
 Use a positive whole number for the step. Clicking **+** or **-** with an empty, zero, negative, fractional, or excessively large step resets the input to `1` and applies a one-unit change. Valid numeric input is read as a number, so `1e2` means a step of `100`.
 
 The count can still become negative. **Reset** returns it to zero without changing the selected step.
+
+
+The count stays within JavaScript's exact integer range, from `-9007199254740991` to `9007199254740991`. A change outside that range leaves the count unchanged and displays a message; choose a smaller step, count back toward zero, or reset.
